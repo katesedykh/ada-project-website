@@ -42,31 +42,43 @@
 						<!-- Introduction -->
 							<article class="post">
 								<header class="major">
-									<span class="date">December 18, 2022</span>
-									<h3>Introduction</h3>
+									<h2>Introduction</h2>
 								</header>
 								<p class = "row">We are often put into boxes regarding our interests and hobbies, we have friends with the same interests as us, we chose a department when we are young at high school and social media makes a lot of suggestions based on our past interests. We sometimes hear that artistic and scientific people are different, closed-minded in their subject, and not interested in the other one. As an example, there exists a popular myth according to which "left-brained" people are more logical whereas "right-brained" people are more creative.<br> 
 										The goal of this project is to study this stereotype by studying the YouNiverse dataset at our disposition using comments and video metadata files. We want to determine whether users who usually comment on artistic videos also comment on scientific videos (and vice-versa). Our goal is also to split artistic and scientific videos into smaller domains to analyze if this effect is influenced by the particular domain of science/art in which the user is interested. To draw some conclusions about people’s interests, we can determine the user profiles and the watching/commenting behaviors w.r.t. videos that do not usually match their profiles.
 </p>
 								<div class="image main"><img src="images/pic01.jpg" alt="" /></div>
+								<h3>Why should we care?</h3>
+								<p class = "row"> Why not </p>
+
+								<h3>Research questions</h3>
+								<ul>
+									<li>What type of art (visual, literary, performing) and sciences (technical, theoretical) are the most popular?</li>
+									<li>How does this popularity evolve?</li>
+									<li>Are commenters interested only in one area or are they engaged in both artistic and scientific videos?</li>
+									<li>If commenters are interested in both, are they commenting at around the same time or in different phases (months, years)?</li>
+									<li>Is there a difference of cross-interest between science and art when we study domains of these fields?</li>
+									<li>What is the difference in terms of artistic sensibility between people interested in technical-related science vs people interested in natural sciences?</li>
+							    </ul>
 							</article>
 
 						<!-- Block 1 -->
 						<article class="post">
 							<header class="major">
-								<h3>Block 1</h3>
+								<h2>Data processing pipeline</h2>
 							</header>
-							<p class = "row">Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue.</p>
+							<h3>Data sampling</h3>
+							<p class = "row">We are working with the YouNiverse dataset which is quite big (~111 GB). We want to classify videos into different domains for our analysis so we will need the metadata of the videos (13.5 GB file). And since we want to observe user commenting habits, we will need to address the dinosaur in the room: the 77.2 GB comments file as well. 
+								Such great quantities of data can simply not be put into memory at once so we had to come up with a way of sampling that would allow us to simultaneously having a large enough sample and be able to match efficiently the user to the videos on which they commented.
+								</p>
+							<p class = "row">Since we are studying youtube users, we choose to start the data sampling from them. What we do is recover a fixed number of comments, let's say around 12 million. In practice, we see that it corresponds to 619701 users.</p>
+							<p class = "row">Then we carry on to the videos where these users commented, and filter them from the whole video dataset. We assume that with enough users, we will have a large enough sample of videos to be representative of all the videos.</p>
+							<p class = "row">Our final sample is then composed of:</p>
+
+							<h3>Data filtering</h3>
+
+							<h4>Artistic videos</h4>
+							<h4>Scientific videos</h4>
 							<div class="image left"><img src="images/pic01.jpg" alt="" /></div>
 							<div class="image right"><img src="images/pic01.jpg" alt="" /></div>
 						</article>
@@ -74,19 +86,15 @@
 						<!-- Block 2 -->
 						<article class="post">
 							<header class="major">
-								<h3>Block 2</h3>
+								<h2>Exploratory Data Analysis</h2>
 							</header>
-							<p class = "row">Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue.</p>
+							<h3>General EDA on all videos</h3>
+							<p class = "row">Exploratory Data Analysis (EDA) is an essential step in any data science project. It allows us to understand the characteristics and patterns of our data, identify any potential issues or biases, and formulate hypotheses for further analysis. By carefully examining the data through visualizations and summary statistics, we can gain insights that inform our decision-making and help us to effectively communicate our findings to others. </p>
+							<h3>Artistic videos</h3>
+							<p class = "row">..</p>
+							<h3>Scientific videos</h3>
+							<p class = "row">..</p>
+							<p class = "row">....</p>
 							<div class="image left"><img src="images/pic01.jpg" alt="" /></div>
 							<div class="image right"><img src="images/pic01.jpg" alt="" /></div>
 						</article>
@@ -94,19 +102,15 @@
 						<!-- Block 3 -->
 						<article class="post">
 							<header class="major">
-								<h3>Block 3</h3>
+								<h2>Investigating our research questions</h2>
 							</header>
-							<p class = "row">Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue.</p>
+							<h3>Users classification pipeline</h3>
+							<h3>Users analysis</h3>
+							<h4>EDA</h4>
+							<h4>Graph analysis</h4>
+							<h3>Regression analysis</h3>
+							<h3>Statistical analysis</h3>
+							<p class = "row">...</p>
 							<div class="image left"><img src="images/pic01.jpg" alt="" /></div>
 							<div class="image right"><img src="images/pic01.jpg" alt="" /></div>
 						</article>
@@ -114,39 +118,11 @@
 						<!-- Block 4 -->
 						<article class="post">
 							<header class="major">
-								<h3>Block 4</h3>
+								<h2>Final thoughts and conclusion</h2>
 							</header>
-							<p class = "row">Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue.</p>
+							<p class = "row">...</p>
 							<div class="image left"><img src="images/pic01.jpg" alt="" /></div>
 							<div class="image right"><img src="images/pic01.jpg" alt="" /></div>
-						</article>
-
-						<!-- Block 5 -->
-						<article class="post">
-							<header class="major">
-								<h3>Block 5</h3>
-							</header>
-							<p class = "row">Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue. Aenean ornare velit lacus varius enim ullamcorper proin aliquam
-							facilisis ante sed etiam magna interdum congue.</p>
 						</article>
 					</div>
 
