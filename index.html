@@ -48,18 +48,16 @@
 									<h2>Introduction</h2>
 								</header>
 								<p>We are often put into boxes regarding our interests and hobbies, we have friends with the same interests as us, we chose a department when we are young at high school and social media makes a lot of suggestions based on our past interests. We sometimes hear that artistic and scientific people are different, closed-minded in their subject, and not interested in the other one. As an example, there exists a popular myth according to which "left-brained" people are more logical whereas "right-brained" people are more creative.<br> 
-										The goal of this project is to study this stereotype by studying the YouNiverse dataset at our disposition using comments and video metadata files. We want to determine whether users who usually comment on artistic videos also comment on scientific videos (and vice-versa). Our goal is also to split artistic and scientific videos into smaller domains to analyze if this effect is influenced by the particular domain of science/art in which the user is interested. To draw some conclusions about people’s interests, we can determine the user profiles and the watching/commenting behaviors w.r.t. videos that do not usually match their profiles.
-</p>
-								<div class="image main"><img src="images/pic01.jpg" alt="" /></div>
+										The goal of this project is to study this stereotype by studying the YouNiverse dataset at our disposition using comments and video metadata files. We want to determine whether users who usually comment on artistic videos also comment on scientific videos (and vice-versa). Our goal is also to split artistic and scientific videos into smaller domains to analyze if this effect is influenced by the particular domain of science/art in which the user is interested. To draw some conclusions about people's interests, we can determine the user profiles and the watching/commenting behaviors w.r.t. videos that do not usually match their profiles.</p>
+								<div class="image fit"><img src="images/leftbrain-rightbrain.jpg" alt="" /></div>
 								<h3>Why should we care?</h3>
-								<p> Why not </p>
+								<p>During our lives, we have experienced or noticed how people can be judged and put into separate baskets when it comes to science and art. With this analysis, we want to be a part of breaking the stigma about people from two different areas of thinking and the fact that they can be connected.</p>
 
 								<h3>Research questions</h3>
 								<ul>
+									<li>How do we define art in YouTube?</li>
 									<li>What type of art (visual, literary, performing) and sciences (technical, theoretical) are the most popular?</li>
-									<li>How does this popularity evolve?</li>
 									<li>Are commenters interested only in one area or are they engaged in both artistic and scientific videos?</li>
-									<li>If commenters are interested in both, are they commenting at around the same time or in different phases (months, years)?</li>
 									<li>Is there a difference of cross-interest between science and art when we study domains of these fields?</li>
 									<li>What is the difference in terms of artistic sensibility between people interested in technical-related science vs people interested in natural sciences?</li>
 							    </ul>
@@ -71,7 +69,7 @@
 								<h2>Data processing pipeline</h2>
 							</header>
 							<h3>Data sampling</h3>
-							<p>We are working with the YouNiverse dataset which is quite big (~111 GB). We want to classify videos into different domains for our analysis so we will need the metadata of the videos (13.5 GB file). And since we want to observe user commenting habits, we will need to address the dinosaur in the room: the 77.2 GB comments file as well. 
+							<p>We are working with the <a href="https://zenodo.org/record/4650046">YouNiverse</a> dataset which is quite big (~111 GB). We want to classify videos into different domains for our analysis so we will need the metadata of the videos (13.5 GB file). And since we want to observe user commenting habits, we will need to address the dinosaur in the room: the 77.2 GB comments file as well. 
 								Such great quantities of data can simply not be put into memory at once so we had to come up with a way of sampling that would allow us to simultaneously having a large enough sample and be able to match efficiently the user to the videos on which they commented.
 								</p>
 							<p>Since we are studying youtube users, we choose to start the data sampling from them. What we do is recover a fixed number of comments, let's say around 12 million. In practice, we see that it corresponds to 619701 users.</p>
@@ -130,23 +128,21 @@
 								<li>For a given domain, when thinking about it, a group of obvious words should come straight to mind, these will serve as the core set upon which the dictionary will be built.</li>
 								<li>The dictionary can be augmented by using the core words as search queries in websites that provide either related terms or synonyms and hand-picking results that are relevant to the theme.</li>
 								<li>GPT3 and ChatGPT were used to generate even more diverse sets of words relevant to the core words from which can be hand-picked from.</li>
-								<li>Entertainment</li>
-								<li>Film & Animation</li>
+								<li>Since exact keyword matching is being used, the words in the dictionary must be augmented, as in adding also the plural form or any other derivatives of it if they make sense, e.g. for choreographer, possible additions would be choreographies, choreographer, choreographers and so on. </li>
 							</ol>
-							<p>Since exact keyword matching is being used, the words in the dictionary must be augmented, as in adding also the plural form or any other derivatives of it if they make sense, e.g. for choreographer, possible additions would be choreographies, choreographer, choreographers and so on.</p>
 							<p>Some keywords that could be obvious had to be excluded e.g. music in arts since a lot of people listen to music videos on YouTube without being interested in art.</p>
 							<h4>Artistic videos</h4>
 							<p>Defining art is not an easy task, it is a subjective concept and it constantly evolves with time. The boundaries of what is considered art are constantly being challenged and redefined as it can present itself under many shapes and forms. For the analysis, we settled on dividing arts into the following domains (inspired by the Wikipedia Arts page):</p>
 							<ul>
-								<li>Visual Art (e.g. architecture, drawing, painting, photography, sculpting)</li>
-								<li>Literary Art (e.g. fiction, drama, poetry, and prose)</li>
-								<li>Performing Art (e.g. dance, music, and theater)</li>
+								<li>Visual Art [VA] (e.g. drawing, painting, photography, sculpting)</li>
+								<li>Literary Art [LA] (e.g. fiction, drama, poetry, and prose)</li>
+								<li>Performing Art [PA] (e.g. dance, music, and theater)</li>
 							</ul>
                             <h4>Scientific videos</h4>
 							<p>Similarly, science was also separated into two domains.</p>
 							<ul>
-								<li>The first would be Natural Sciences where the focus is on understanding the natural world and how it functions, e.g. biology, physics, chemistry.</li>
-								<li>Technical Sciences, on the other hand, are disciplines that focus on the practical application of scientific knowledge and principles, e.g. engineering, computer science.</li>
+								<li>The first would be Natural Sciences [NS] where the focus is on understanding the natural world and how it functions, e.g. biology, physics, chemistry.</li>
+								<li>The second would be Technical Sciences [TS], disciplines that focus on the practical application of scientific knowledge and principles, e.g. engineering, computer science.</li>
 							</ul>
 							<p>This distinction was made so that it can be possible to study if within scientific-minded people, there are subgroups that are more sensible to arts and whether it is related to their fields of interest in science.</p>
 						</article>
@@ -159,7 +155,7 @@
 							<h3>General EDA on all videos</h3>
 							<p>Exploratory Data Analysis (EDA) is an essential step in any data science project. It allows us to understand the characteristics and patterns of our data, identify any potential issues or biases, and formulate hypotheses for further analysis. By carefully examining the data through visualizations and summary statistics, we can gain insights that inform our decision-making and help us to effectively communicate our findings to others. </p>
 							<div class="image fit"><img src="images/categories_all_videos.png" alt="" /></div>
-							<p>This first graph shows that the majority of YouTube videos fall into the entertainment category. This is not surprising, as entertainment is a broad category that includes a wide range of content such as music, movies, television shows, and more. It is likely that these types of videos are highly popular on YouTube, as they are easily consumable and can appeal to a wide audience. However, it is important to note that this graph only represents the youtube category field of the videos, and may not be representative of the overall distribution of video categories on YouTube. That’s why we decided to create our own category feature.</p>
+							<p>This first graph shows that the majority of YouTube videos fall into the entertainment category. This is not surprising, as entertainment is a broad category that includes a wide range of content such as music, movies, television shows, and more. It is likely that these types of videos are highly popular on YouTube, as they are easily consumable and can appeal to a wide audience. However, it is important to note that this graph only represents the youtube category field of the videos, and may not be representative of the overall distribution of video categories on YouTube. That's why we decided to create our own category feature.</p>
 							<p>The following graph showing the proportion of science, art, and other types of videos over time indicates that art and science categories make up a significant portion of the data, with a combined total of 27%. This suggests that there is a sufficient amount of data to conduct an analysis on the relationship between commenting behavior on scientific and artistic videos. The graph also shows that there are slightly more artistic videos than scientific videos, and that the proportions of these categories do not fluctuate significantly over time. This suggests that the distribution of these categories is relatively stable and consistent, which may be useful for analyzing trends or patterns in the data.</p>
 							<div class="image fit"><img src="images/art_science_dist_pie_time.png" alt="" /></div>
 							<p>The Venn diagram showing the overlap between artistic and scientific videos indicates that a significant portion of the videos in the dataset belongs to both categories. We decided to keep these videos in the dataset, as they accurately reflect the complexity and multifaceted nature of many YouTube videos.</p>
@@ -184,7 +180,7 @@
 							<p>For example, we can see that natural science videos are quite focused on astronomy and theoretical physics (universe, galaxy, stars). We also see a part in biology with words like (medical, cell, DNA). As a comparison, technical science is more focused on engineering and, well, technology in general.</p>
 							<p>We also wanted to observe the repartition of our classified science videos in the two different categories. We can see this in the following plot.</p>
 							<div class="image fit"><img src="images/science_domains_dist_pie_time.png" alt="" /></div>
-							<p>The pie chart shows us the distribution of the videos in general while the graph on the left shows us the evolution of the percentages with regard to the years. We can observe that we see in general a little more technical science videos on YouTube than natural science videos. While the proportion is almost equal, we could explain the larger amount of tech videos on youtube because of all the tech tutorials, technological product reviews and tests that is a quite popular trend on YouTube(article: https://shopping.google.com/m/21-of-21/articles/youtube-unboxing-videos/)</p>
+							<p>The pie chart shows us the distribution of the videos in general while the graph on the left shows us the evolution of the percentages with regard to the years. We can observe that we see in general a little more technical science videos on YouTube than natural science videos. While the proportion is almost equal, we could explain the larger amount of tech videos on youtube because of all the tech tutorials, technological product reviews and tests that is a quite popular trend on YouTube (<a href=" https://shopping.google.com/m/21-of-21/articles/youtube-unboxing-videos/">source</a>).</p>
 							<p>The quite important variations we see in the years before 2008 can be explained by the fact that there is fewer videos and so the graph is less smooth.</p>
 							<div class="image fit"><img src="images/venn_diagram_science_domains_videos.png" alt="" /></div>
 							<p>Here again, while there is still some overlap, the majority of the videos can be confidently classified into one specific subcategory, which will enable more accurate and reliable results in the statistical analysis.</p>
@@ -196,14 +192,84 @@
 								<h2>Investigating our research questions</h2>
 							</header>
 							<h3>Users classification pipeline</h3>
+							<p>The "User Classification Pipeline" is the next step after completing the EDA phase. The goal of this pipeline is to classify users based on their comments on artistic and scientific videos, using the same categories and subcategories that are defined in the EDA phase.</p>
+							<p>To achieve this, a sample of 12 million comments from the "youtube_comments.tsv" file was taken and grouped by user. The data was then merged with the previous video dataframe to obtain the number of comments each user made on artistic, scientific, and other types of videos.</p>
+							<p>This process allows us to create a clean dataframe that can be used for the statistical analysis to answer our research question. Indeed, it enables us to accurately analyze the behavior of users in relation to different types of artistic and scientific content, as we are able to classify the artistic and scientific videos into the subcategories of literary art, visual art, performing art, natural science and technical science.</p>
+							
 							<h3>Users analysis</h3>
 							<h4>EDA</h4>
-							<h4>Graph analysis</h4>
+							<p>The first graph reveals that a large proportion of authors who comment on artistic videos also comment on scientific videos (and vice versa). To verify that this is not due to the fact that many videos are classified as both artistic and scientific, we can compare this Venn diagram to the Venn diagram of the number of artistic and scientific videos. We find that the proportion of videos classified as both scientific and artistic is much lower than the proportion of authors who comment on both artistic and scientific videos. This suggests that the authors' dual interest in both art and science may be driving this behavior, but further analysis is needed to confirm this.</p>
+							<div class="image fit"><img src="images/venn_diagram_comments_art_science_other.png" alt="" /></div>
+							<div class="image fit"><img src="images/venn_diagram_comments_art_science.png" alt="" /></div>
+							<p>To further explore the interests of authors who comment on artistic and scientific videos, we compared the percentage of authors who commented on these types of videos with respect to their other interests. Our analysis revealed that 36.19% of all authors commented on artistic videos, while 45.48% of authors who commented on scientific videos also commented on artistic videos. Similarly, 23.83% of all authors commented on scientific videos, while 69.07% of authors who commented on artistic videos also commented on scientific videos. These results are consistent with our previous analysis using the Venn diagram and suggest that our initial stereotype may be incorrect.</p>
+							<div class="image fit"><img src="images/dist_art_science_commenters.png" alt="" /></div>
+							<p>Now that we have identified a significant overlap in the interests of authors who comment on both artistic and scientific videos, it is important to gain a better understanding of the specific types of scientists and artists who are interested in each other's content. To do this, we analyzed the distribution of scientific commenters on artistic videos by their type of science, as well as the distribution of artistic commenters on scientific videos by their type of art. Our analysis revealed that natural scientists tend to comment more on artistic videos than technical scientists, while performing artists tend to comment more on scientific videos than visual and literary artists. These findings provide valuable insights into the specific types of scientists and artists who are interested in each other's content.</p>
+							<h4>Visualizations</h4>
+							<p>Network graphs can be a very helpful tool to visualize how the commenters cluster up with other users who share similar commenting behaviors. To achieve this, a bipartite graph can be created where the first group of nodes are the commenters and the second group of nodes are the various domains used for the analysis. Each node from the first group has edges to a node in the second group if they have commented on a video that was classified as part of that domain. Then using a projection on the first group, a point cloud like network graph can be obtained which clusters the commenters.</p>
+							<div class="image fit"><img src="images/network_art_science_other.png" alt="" /></div>
+							<p>For this first graph, the focus is about how users from the random sample comment on the video types (artistic, scientific, others). Without surprise, one can notice that the large majority of users comment only on videos which have probably nothing to do with arts or science. It can be seen that the amount of users that comment only on artistic videos and users that comment on both artistic and other videos is rather similar. Interestingly, users that comment solely on artistic and scientific videos are a very small minority.</p>
+							<div class="image fit"><img src="images/network_domains.png" alt="" /></div>
+							<p>In this second graph, the focus is now put on users and their commenting habits for the various chosen domains within arts and science.</p>
+							<p>For users that solely comment on one domain, it can be noticed that within science, users linked to NS and those linked to TS are similar in proportions. On the other hand, for artistic videos, one can see that PA clearly dominates VA and LA.</p>
+							<p>When looking at the central mass, it can be noticed that a certain cluster is quite separated, it's the group of users that comment only on PA and other videos. For the interactions between arts and science, it can be seen that on one hand, users that comment on NS seem to enjoy equally all art domains while on the other hand, users that comment on TS rarely ever tend to comment on PA.</p>
+
+
+
+
 							<h3>Regression analysis</h3>
+							<p>Now that we have an idea of how our user sample looks like, we will try to answer our research question:</p>
+							<p>"What is the difference in terms of artistic sensibility between people interested in technical-related science vs people interested in natural sciences?"</p>
+							<p>More precisely:</p>
+							<p>We will try to use linear regression in order to answer these two questions</p>
+							<ol>
+								<li>Who is more probable to comment on a visual / literary / performing art video: technical scientists or natural scientists?</li>
+								<li>Who is more probable to comment on a technical / natural science video: visual artists, performing artists or literary artists?</li>
+							</ol>
+							<p>Let's define these two sets so we can use them in our linear regression models.</p>
+							<h4>Arts</h4>
+							<p>$$A = \{A_1, A_2, A_3\} = \{\text{visual}, \text{literary}, \text{performing}\}, \quad A_i \in \mathbb{N}$$</p>
+							<h4>Sciences</h4>
+							<p>$$S = \{S_1, S_2\} = \{\text{technical}, \text{natural}\}, \quad S_i \in \mathbb{N}$$</p>
+							<p>Each corresponds to the number of comments a user makes on videos from different domains.</p>
+							<p>To also compare the coefficients we will get with videos not labeled with art nor science, we need to add this type of comments in the model as well.</p>
+							<p>We'll denote them as $$Q \coloneqq \text{number of comments on non-art and non-science videos}$$</p>
+							<p><i><b>Are scientists interested in art videos?</b></i></p>
+							<p>Let's start with the first question with the following models for artists:</p>
+							<p>$$ A_j = \beta_0 + \sum_{i=1}^2 \beta_i S_i + \beta_3 Q, \quad j=1,\dots,3$$</p>
+							<div class="image fit"><img src="images/lin_reg_artists.png" alt="" /></div>
+							<p>We can see here that in general people interested in natural sciences are more likely to comment on art videos than people interested in technical sciences, and this for our three art domains. We can also see that people interested in technical science videos are quite unlikely to comment on visual_art videos.</p>
+							<p>We can also see that no_art_no_science is quite close to 0 in all cases, this helps us assess the significance of the other coefficients for natural science and technical science.</p>
+							<p>Let's examine this phenomenon the other way around.</p>
+							<p><i><b>Are artists interested in science videos?</b></i></p>
+							<p>For the second question, we define the following models for scientists:</p>
+							<p>$$ S_j = \beta_0 + \sum_{i=1}^3 \beta_i A_i + \beta_4 Q, \quad j=1,\dots,2$$</p>
+							<div class="image fit"><img src="images/lin_reg_scientists.png" alt="" /></div>
+							<p>Here we can see in what domain of science are artists more interested in. We see that in general, people interested in literary art are more likely to watch science videos than other types of arts. Furthermore, as in the previous plot, we can see that people interested in literary art are also much more interested in natural science rather than technical science.</p>
+							<p>We also see that people interested in visual arts are quite unlikely to comment on technical science videos.</p>
+							
 							<h3>Statistical analysis</h3>
-							<p>...</p>
-							<div class="image left"><img src="images/pic01.jpg" alt="" /></div>
-							<div class="image right"><img src="images/pic01.jpg" alt="" /></div>
+							<p>Looking at both relationship directions, we have to run statistical tests to see if there is a significant difference.</p>
+							<h4>T-test</h4>
+							<p><b>Are artistic people interested in science videos?</b></p>
+							<p>The p-value of 1.7e-155 is less than the significance level of 0.05, so we can reject the null hypothesis. It means that there is a significant difference between the number of comments that authors who comment on art videos write on science videos and the average number of comments that all authors write on science videos.</p>
+							<p><b>Are scientific people interested in art videos?</b></p>
+							<p>The p-value of 5.6e-232 is less than the significance level of 0.05, so we can reject the null hypothesis.</p>
+							<p>Hence, for both cases we are rejecting the null hypothesis. We ran other statistical tests as t-test might not be the most robust option.</p>
+							<h4>Wilcoxon test</h4>
+							<p>Wilcoxon test is a non-parametric statistical test which does not assume normality.</p>
+							<p><b>Are artistic people interested in science videos?</b></p>
+							<p>The p-value of 0.0 is less than the significance level of 0.05, so we can reject the null hypothesis.</p>
+							<p><b>Are scientific people interested in art videos?</b></p>
+							<p>The p-value of 0.004 is less than the significance level of 0.05, so we can reject the null hypothesis.</p>
+							<h4>Welch's t-test</h4>
+							<p>Welch's t-test is more robust than the usual t-test.</p>
+							<p><b>Are artistic people interested in science videos?</b></p>
+							<p>The p-value of 7.8e-135 is less than the significance level of 0.05, so we can reject the null hypothesis.</p>
+							<p><b>Are scientific people interested in art videos?</b></p>
+							<p>The p-value of 1.8e-217 is less than the significance level of 0.05, so we can reject the null hypothesis.</p>
+							<h4>Mann-Whitney U test</h4>
+							<p>With Mann-Whitney U test for both cases we gor p-value=0, hence the null hypothesis can also be rejected which corresponds to all other tests.</p>
+
 						</article>
 
 						<!-- Block 4 -->
@@ -212,8 +278,9 @@
 								<h2>Final thoughts and conclusion</h2>
 							</header>
 							<p>...</p>
-							<div class="image left"><img src="images/pic01.jpg" alt="" /></div>
-							<div class="image right"><img src="images/pic01.jpg" alt="" /></div>
+							<p>In statistical analysis, we rejected null hypothesis as p-values were lower than 0.05, meaning that there is a significant difference between the number of comments from "artistic" commenters on science videos and the average number of comments that all authors write on science videos and the same goes to "scientific" commenters and art videos.</p>
+							<p>Using this analysis, we are able to see that people are interested in different fields.</p>
+							<p>We hope that with this analysis we were able to prove that people can be interested both in science and art.</p>
 						</article>
 					</div>
 
@@ -230,7 +297,7 @@
 
 				<!-- Copyright -->
 					<div id="copyright">
-						<ul><li>&copy; GEKSADA</li><li>Design: Massively</li></ul>
+						<ul><li>&copy; GEKSADA</li><li>Design: Massively HTML</li></ul>
 					</div>
 
 			</div>
