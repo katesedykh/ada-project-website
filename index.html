@@ -158,13 +158,36 @@
 							</header>
 							<h3>General EDA on all videos</h3>
 							<p>Exploratory Data Analysis (EDA) is an essential step in any data science project. It allows us to understand the characteristics and patterns of our data, identify any potential issues or biases, and formulate hypotheses for further analysis. By carefully examining the data through visualizations and summary statistics, we can gain insights that inform our decision-making and help us to effectively communicate our findings to others. </p>
+							<div class="image fit"><img src="images/categories_all_videos.png" alt="" /></div>
+							<p>This first graph shows that the majority of YouTube videos fall into the entertainment category. This is not surprising, as entertainment is a broad category that includes a wide range of content such as music, movies, television shows, and more. It is likely that these types of videos are highly popular on YouTube, as they are easily consumable and can appeal to a wide audience. However, it is important to note that this graph only represents the youtube category field of the videos, and may not be representative of the overall distribution of video categories on YouTube. That’s why we decided to create our own category feature.</p>
+							<p>The following graph showing the proportion of science, art, and other types of videos over time indicates that art and science categories make up a significant portion of the data, with a combined total of 27%. This suggests that there is a sufficient amount of data to conduct an analysis on the relationship between commenting behavior on scientific and artistic videos. The graph also shows that there are slightly more artistic videos than scientific videos, and that the proportions of these categories do not fluctuate significantly over time. This suggests that the distribution of these categories is relatively stable and consistent, which may be useful for analyzing trends or patterns in the data.</p>
+							<div class="image fit"><img src="images/art_science_dist_pie_time.png" alt="" /></div>
+							<p>The Venn diagram showing the overlap between artistic and scientific videos indicates that a significant portion of the videos in the dataset belongs to both categories. We decided to keep these videos in the dataset, as they accurately reflect the complexity and multifaceted nature of many YouTube videos.</p>
+							<div class="image fit"><img src="images/venn_diagram_artistic_science_videos.png" alt="" /></div>
+						
 							<h3>Artistic videos</h3>
-							<p>..</p>
+							<p>Since we have identified which videos fall under our vision of "Artistic videos", let's look at their distribution within the categories that Youtube has defined:</p>
+							<div class="image fit"><img src="images/categories_art_videos.png" alt="" /></div>
+							<p>Most popular dictionary words that classified videos in their domains give us more information about what most popular type of video is actually located in each domain.</p>
+							<div class="image fit"><img src="images/art_word_clouds.png" alt="" /></div>
+							<p>After examining the most common words in each of the subcategories, we found that some words were not specific enough to accurately classify the videos. For example, the word "music" could refer to a wide range of content, including both artistic and non-artistic videos. As a result, we decided to remove or replace these types of words from our dictionaries in order to increase the precision of our categorization process. Additionally, we noticed that some words were frequently used due to the presence of a large number of gaming videos in the dataset. For example, the word "craft" was commonly used in the titles and descriptions of Minecraft videos. In order to remove any potential biases introduced by these types of videos, we decided to remove gaming videos from the dataset.</p>
+                            <div class="image fit"><img src="images/art_domains_dist_pie_time.png" alt="" /></div>
+							<p>The pie chart shows that the proportion of literary art, visual art, and performing art videos in the YouTube dataset is roughly equal and does not vary significantly over time. This indicates that the YouTube platform has a diverse range of artistic content, with a roughly equal distribution of different types of artistic expression. This is an interesting finding, as it suggests that users of the platform are interested in a wide range of artistic content, rather than just focusing on a single type of art.</p>
+							<div class="image fit"><img src="images/venn_diagram_art_domains_videos.png" alt="" /></div>
+							<p>In the Venn diagram representing the intersection between videos classified as literary art, visual art, and performing art, it is evident that there is a small portion of videos that fall into two subcategories. This is useful for the statistical analysis that will follow the EDA, as it allows for clear conclusions to be drawn about the characteristics of each subcategory. The small overlap between the subcategories means that the majority of the videos can be confidently classified into one specific subcategory, which will enable more accurate and reliable results in the statistical analysis.</p>
+							
 							<h3>Scientific videos</h3>
-							<p>..</p>
-							<p>....</p>
-							<div class="image left"><img src="images/pic01.jpg" alt="" /></div>
-							<div class="image right"><img src="images/pic01.jpg" alt="" /></div>
+							<p>Similarly, we can look at the distribution within the Youtube categories for our "Science videos".</p>
+							<div class="image fit"><img src="images/categories_science_videos.png" alt="" /></div>
+							<p>We can also analyse the most used words in the tags to classify our science videos. These can give us a more accurate impression of what tags our videos actually point towards.</p>
+							<div class="image fit"><img src="images/science_word_clouds.png" alt="" /></div>
+							<p>For example, we can see that natural science videos are quite focused on astronomy and theoretical physics (universe, galaxy, stars). We also see a part in biology with words like (medical, cell, DNA). As a comparison, technical science is more focused on engineering and, well, technology in general.</p>
+							<p>We also wanted to observe the repartition of our classified science videos in the two different categories. We can see this in the following plot.</p>
+							<div class="image fit"><img src="images/science_domains_dist_pie_time.png" alt="" /></div>
+							<p>The pie chart shows us the distribution of the videos in general while the graph on the left shows us the evolution of the percentages with regard to the years. We can observe that we see in general a little more technical science videos on YouTube than natural science videos. While the proportion is almost equal, we could explain the larger amount of tech videos on youtube because of all the tech tutorials, technological product reviews and tests that is a quite popular trend on YouTube(article: https://shopping.google.com/m/21-of-21/articles/youtube-unboxing-videos/)</p>
+							<p>The quite important variations we see in the years before 2008 can be explained by the fact that there is fewer videos and so the graph is less smooth.</p>
+							<div class="image fit"><img src="images/venn_diagram_science_domains_videos.png" alt="" /></div>
+							<p>Here again, while there is still some overlap, the majority of the videos can be confidently classified into one specific subcategory, which will enable more accurate and reliable results in the statistical analysis.</p>
 						</article>
 
 						<!-- Block 3 -->
