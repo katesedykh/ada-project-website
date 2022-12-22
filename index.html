@@ -78,12 +78,77 @@
 							<p>Then we carry on to the videos where these users commented, and filter them from the whole video dataset. We assume that with enough users, we will have a large enough sample of videos to be representative of all the videos.</p>
 							<p>Our final sample is then composed of:</p>
 
+							<!-- Table -->
+							<div class="table-wrapper">
+								<table>
+									<thead>
+										<tr>
+											<th>Number of comments</th>
+											<th>Number of users</th>
+											<th>Number of videos</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>11999998</td>
+											<td>619701</td>
+											<td>4136765</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+							<p><b>Note:</b> We only ran this sampling pipeline once since it is quite long. It was made possible to process the whole video dataset with the help of dividing the data into processable chunks. We then saved the sampled data into two light-weight files using the feather format.							</p>
+
+
 							<h3>Data filtering</h3>
 
 							<h4>Artistic videos</h4>
-							<h4>Scientific videos</h4>
-							<div class="image left"><img src="images/pic01.jpg" alt="" /></div>
-							<div class="image right"><img src="images/pic01.jpg" alt="" /></div>
+							<p>Whenever someone publishes a video on Youtube, they must be assign it to one of the fifteen categories Youtube has predefined, namely:</p>
+							<ol>
+								<li>Autos & Vehicles</li>
+								<li>Comedy</li>
+								<li>Education</li>
+								<li>Entertainment</li>
+								<li>Film & Animation</li>
+								<li>Gaming</li>
+								<li>Howto & Style</li>
+								<li>Music</li>
+								<li>News & Politics</li>
+								<li>Nonprofits & Activism</li>
+								<li>Pets & Animals</li>
+								<li>People & Blogs</li>
+								<li>Science & Technology</li>
+								<li>Sports</li>
+								<li>Travel & Events</li>
+							</ol>
+							<p>While the YouNiverse dataset does provide us with the category associated with each of the videos. Unfortunately for us, this categorization has many flaws which means we can not use it effectively whatsoever. </p>
+							<p>Sometimes videos have been randomly categorized by the publisher or another problem that can occur is that a video could fit into multiple categories but since there is only one slot possible, a choice must be made. There is no such thing as an “Arts” category either which means they will be spread out in the other categories. For the “Science” videos of our analysis, one could naively use the existing Science & Technology Youtube category, but this is not smart because as mentioned previously, scientific videos can technically be both scientific and educative for example which means they are also spread out.</p>
+							<p>Therefore we must filter out these artistic and scientific videos ourselves. In fact we only made use of the Youtube categorization only for a single aspect: Gaming videos is the dominating category in terms of number of videos but also caused us quite the problems for the filtering of our videos as we made use of tags. The issue is that since video games can be about pretty much any thematic, the tags can be so diverse and therefore include words one would not normally associate with video games, e.g. "craft" but would make it so that a lot of Minecraft videos would be classified as artistic which is not something we really want.</p>
+							<p>The YouNiverse dataset also contains the title, description and tags that were used in every video. These elements have more potential to be informative compared to the category. The filtering made use of the tags only since their goal is to be short and relevant to the content of the video while the title and description can be more ambiguous and vague. The filtering is made using keyword matching with a dictionary of words pertinent to wanted thematic. If one word is present in the tags, then the video and its content is considered as part of that particular theme.</p>
+							<p>For each of the artistic and scientific domains which are used in the analysis, a hand-crafted dictionary was created using the following approach:</p>
+							<ol>
+								<li>For a given domain, when thinking about it, a group of obvious words should come straight to mind, these will serve as the core set upon which the dictionary will be built.</li>
+								<li>The dictionary can be augmented by using the core words as search queries in websites that provide either related terms or synonyms and hand-picking results that are relevant to the theme.</li>
+								<li>GPT3 and ChatGPT were used to generate even more diverse sets of words relevant to the core words from which can be hand-picked from.</li>
+								<li>Entertainment</li>
+								<li>Film & Animation</li>
+							</ol>
+							<p>Since exact keyword matching is being used, the words in the dictionary must be augmented, as in adding also the plural form or any other derivatives of it if they make sense, e.g. for choreographer, possible additions would be choreographies, choreographer, choreographers and so on.</p>
+							<p>Some keywords that could be obvious had to be excluded e.g. music in arts since a lot of people listen to music videos on YouTube without being interested in art.</p>
+							<h4>Artistic videos</h4>
+							<p>Defining art is not an easy task, it is a subjective concept and it constantly evolves with time. The boundaries of what is considered art are constantly being challenged and redefined as it can present itself under many shapes and forms. For the analysis, we settled on dividing arts into the following domains (inspired by the Wikipedia Arts page):</p>
+							<ul>
+								<li>Visual Art (e.g. architecture, drawing, painting, photography, sculpting)</li>
+								<li>Literary Art (e.g. fiction, drama, poetry, and prose)</li>
+								<li>Performing Art (e.g. dance, music, and theater)</li>
+							</ul>
+                            <h4>Scientific videos</h4>
+							<p>Similarly, science was also separated into two domains.</p>
+							<ul>
+								<li>The first would be Natural Sciences where the focus is on understanding the natural world and how it functions, e.g. biology, physics, chemistry.</li>
+								<li>Technical Sciences, on the other hand, are disciplines that focus on the practical application of scientific knowledge and principles, e.g. engineering, computer science.</li>
+							</ul>
+							<p>This distinction was made so that it can be possible to study if within scientific-minded people, there are subgroups that are more sensible to arts and whether it is related to their fields of interest in science.</p>
 						</article>
 
 						<!-- Block 2 -->
