@@ -46,11 +46,93 @@
 
 		<!-- Main -->
 		<div id="main">
+			<article class="post">
+				<h3>Table of content</h3>
+				<ol class="toc-list" role="list">
+					<li>
+					<a href="#Introduction">
+						<span class="title">Introduction</span>
+					</a>
+				
+					<ol>
+						<li><a href="#Why-should-we-care?">
+							<span class="title">Why should we care?</span>
+						</a></li>
+						<li><a href="#Research-questions">
+							<span class="title">Research questions</span>
+						</a></li>
+					</ol>
+					</li>
+
+					<li>
+						<a href="#Data-processing-pipeline">
+							<span class="title">Data processing pipeline</span>
+						</a>
+					
+						<ol>
+							<li><a href="#Data-sampling">
+								<span class="title">Data sampling</span>
+							</a></li>
+							<li><a href="#Data-filtering">
+								<span class="title">Data filtering</span>
+							</a></li>
+						</ol>
+					</li>
+
+					<li>
+						<a href="#EDA">
+							<span class="title">Exploratory Data Analysis</span>
+						</a>
+					
+						<ol>
+							<li><a href="#General-EDA-on-all-videos">
+								<span class="title">General EDA on all videos</span>
+							</a></li>
+							<li><a href="#EDA-Artistic-videos">
+								<span class="title">Artistic videos</span>
+							</a></li>
+							<li><a href="#EDA-Scientific-videos">
+								<span class="title">Scientific videos</span>
+							</a></li>
+						</ol>
+					</li>
+
+					<li>
+						<a href="#Investigating-research-questions">
+							<span class="title">Investigating our research questions</span>
+						</a>
+					
+						<ol>
+							<li><a href="#Users-classification-pipeline">
+								<span class="title">Users classification pipeline</span>
+							</a></li>
+							<li><a href="#Users-analysis">
+								<span class="title">Users analysis</span>
+							</a></li>
+							<li><a href="#Regression-analysis">
+								<span class="title">Regression analysis</span>
+							</a></li>
+							<li><a href="#Statistical-analysis">
+								<span class="title">Statistical analysis</span>
+							</a></li>
+						</ol>
+					</li>
+
+					<li>
+						<a href="#Conclusion">
+							<span class="title">Final thoughts and conclusion</span>
+						</a>
+					
+					</li>
+
+					
+				</ol>
+		    </article>
 
 			<!-- Introduction -->
 			<article class="post">
 				<header class="major">
-					<h2>Introduction</h2>
+					<h2><a id="Introduction">Introduction</a></h2>
 				</header>
 				<p>We are often put into boxes regarding our interests and hobbies, we have friends with the same
 					interests as us, we chose a department when we are young at high school and social media makes a lot
@@ -71,13 +153,13 @@
 						<div class="image fit"><img src="images/leftbrain-rightbrain.jpg" alt="" /></div>
 					</div>
 				</div>
-				<h3>Why should we care?</h3>
+				<h3><a id="Why-should-we-care?">Why should we care?</a></h3>
 				<p>During our lives, we have experienced or noticed how people can be judged and put into separate
 					baskets when it comes to science and art. With this analysis, we want to be a part of breaking the
 					stigma about people from two different areas of thinking and the fact that they can be connected.
 				</p>
 
-				<h3>Research questions</h3>
+				<h3><a id="Research-questions"></a>Research questions</h3>
 				<ul>
 					<li>How do we define art in YouTube?</li>
 					<li>What type of art (visual, literary, performing) and sciences (technical, theoretical) are the
@@ -94,9 +176,9 @@
 			<!-- Block 1 -->
 			<article class="post">
 				<header class="major">
-					<h2>Data processing pipeline</h2>
+					<h2><a id="Data-processing-pipeline">Data processing pipeline</a></h2>
 				</header>
-				<h3>Data sampling</h3>
+				<h3><a id="Data-sampling">Data sampling</a></h3>
 				<p>We are working with the <a href="https://zenodo.org/record/4650046">YouNiverse</a> dataset which is
 					quite big (~111 GB). We want to classify videos into different domains for our analysis so we will
 					need the metadata of the videos (13.5 GB file). And since we want to observe user commenting habits,
@@ -138,7 +220,7 @@
 						href="https://arrow.apache.org/docs/python/feather.html">feather format</a>. </p>
 
 
-				<h3>Data filtering</h3>
+				<h3><a id="Data-filtering">Data filtering</a></h3>
 
 				<h4>Artistic videos</h4>
 				<p>Whenever someone publishes a video on Youtube, they must be assign it to one of the fifteen
@@ -165,8 +247,8 @@
 					whatsoever. </p>
 				<p>Sometimes videos have been randomly categorized by the publisher or another problem that can occur is
 					that a video could fit into multiple categories but since there is only one slot possible, a choice
-					must be made. There is no such thing as an “Arts” category either which means they will be spread
-					out in the other categories. For the “Science” videos of our analysis, one could naively use the
+					must be made. There is no such thing as an "Arts" category either which means they will be spread
+					out in the other categories. For the "Science" videos of our analysis, one could naively use the
 					existing Science & Technology Youtube category, but this is not smart because as mentioned
 					previously, scientific videos can technically be both scientific and educative for example which
 					means they are also spread out.</p>
@@ -253,9 +335,9 @@
 			<!-- Block 2 -->
 			<article class="post">
 				<header class="major">
-					<h2>Exploratory Data Analysis</h2>
+					<h2><a id="EDA">Exploratory Data Analysis</a></h2>
 				</header>
-				<h3>General EDA on all videos</h3>
+				<h3><a id="General-EDA-on-all-videos"></a>General EDA on all videos</h3>
 				<p>Exploratory Data Analysis (EDA) is an essential step in any data science project. It allows us to
 					understand the characteristics and patterns of our data, identify any potential issues or biases,
 					and formulate hypotheses for further analysis. By carefully examining the data through
@@ -284,7 +366,7 @@
 					many YouTube videos.</p>
 				<div class="image fit"><img src="images/venn_diagram_artistic_science_videos.png" alt="" /></div>
 
-				<h3>Artistic videos</h3>
+				<h3><a id="EDA-Artistic-videos"></a>Artistic videos</h3>
 				<p>Since we have identified which videos fall under our vision of "Artistic videos", let's look at their
 					distribution within the categories that Youtube has defined:</p>
 				<div class="image fit"><img src="images/categories_art_videos.png" alt="" /></div>
@@ -315,7 +397,7 @@
 					one specific subcategory, which will enable more accurate and reliable results in the statistical
 					analysis.</p>
 
-				<h3>Scientific videos</h3>
+				<h3><a id="EDA-Scientific-videos"></a>Scientific videos</h3>
 				<p>Similarly, we can look at the distribution within the Youtube categories for our "Science videos".
 				</p>
 				<div class="image fit"><img src="images/categories_science_videos.png" alt="" /></div>
@@ -347,9 +429,9 @@
 			<!-- Block 3 -->
 			<article class="post">
 				<header class="major">
-					<h2>Investigating our research questions</h2>
+					<h2><a id="Investigating-research-questions">Investigating our research questions</a></h2>
 				</header>
-				<h3>Users classification pipeline</h3>
+				<h3><a id="Users-classification-pipeline">Users classification pipeline</a></h3>
 				<p>The "User Classification Pipeline" is the next step after completing the EDA phase. The goal of this
 					pipeline is to classify users based on their comments on artistic and scientific videos, using the
 					same categories and subcategories that are defined in the EDA phase.</p>
@@ -361,7 +443,7 @@
 					relation to different types of artistic and scientific content, as we are able to classify the
 					artistic and scientific videos into the subcategories of LA, VA, PA, NS and TS.</p>
 
-				<h3>Users analysis</h3>
+				<h3><a id="Users-analysis">Users analysis</a></h3>
 				<h4>EDA</h4>
 				<p>The first graph reveals that a large proportion of authors who comment on artistic videos also
 					comment on scientific videos (and vice versa). To verify that this is not due to the fact that many
@@ -435,9 +517,7 @@
 				
 
 
-
-
-				<h3>Regression analysis</h3>
+				<h3><a id="Regression-analysis">Regression analysis</a></h3>
 				<p>Now that we have an idea of how our user sample looks like, we will try to answer our research
 					question:</p>
 				<p>"What is the difference in terms of artistic sensibility between people interested in
@@ -481,7 +561,7 @@
 				<p>We also see that people interested in VA are quite unlikely to comment on TS
 					videos.</p>
 
-				<h3>Statistical analysis</h3>
+				<h3><a id="Statistical-analysis">Statistical analysis</a></h3>
 				<p>Looking at both relationship directions, we have to run statistical tests to see if there is a
 					significant difference.</p>
 				<h4>T-test</h4>
@@ -520,7 +600,7 @@
 			<!-- Block 4 -->
 			<article class="post">
 				<header class="major">
-					<h2>Final thoughts and conclusion</h2>
+					<h2><a id="Conclusion">Final thoughts and conclusion</a></h2>
 				</header>
 				<p>In conclusion, our analysis has consistently shown that scientific users on YouTube are more interested 
 					in artistic content than the average user, and artistic users are more interested in scientific content 
