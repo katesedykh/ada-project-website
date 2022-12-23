@@ -87,7 +87,7 @@
 					<li>Is there a difference of cross-interest between science and art when we study domains of these
 						fields?</li>
 					<li>What is the difference in terms of artistic sensibility between people interested in
-						technical-related science vs people interested in natural sciences?</li>
+						TS vs people interested in NS?</li>
 				</ul>
 			</article>
 
@@ -273,15 +273,15 @@
 					commonly used in the titles and descriptions of Minecraft videos. In order to remove any potential
 					biases introduced by these types of videos, we decided to remove gaming videos from the dataset.</p>
 				<div class="image fit"><img src="images/art_domains_dist_pie_time.png" alt="" /></div>
-				<p>The pie chart shows that the proportion of literary art, visual art, and performing art videos in the
+				<p>The pie chart shows that the proportion of LA, VA, and PA videos in the
 					YouTube dataset is roughly equal and does not vary significantly over time. This indicates that the
 					YouTube platform has a diverse range of artistic content, with a roughly equal distribution of
 					different types of artistic expression. This is an interesting finding, as it suggests that users of
 					the platform are interested in a wide range of artistic content, rather than just focusing on a
 					single type of art.</p>
 				<div class="image fit"><img src="images/venn_diagram_art_domains_videos.png" alt="" /></div>
-				<p>In the Venn diagram representing the intersection between videos classified as literary art, visual
-					art, and performing art, it is evident that there is a small portion of videos that fall into two
+				<p>In the Venn diagram representing the intersection between videos classified as LA, visual
+					art, and PA, it is evident that there is a small portion of videos that fall into two
 					subcategories. This is useful for the statistical analysis that will follow the EDA, as it allows
 					for clear conclusions to be drawn about the characteristics of each subcategory. The small overlap
 					between the subcategories means that the majority of the videos can be confidently classified into
@@ -295,16 +295,16 @@
 				<p>We can also analyse the most used words in the tags to classify our science videos. These can give us
 					a more accurate impression of what tags our videos actually point towards.</p>
 				<div class="image fit"><img src="images/science_word_clouds.png" alt="" /></div>
-				<p>For example, we can see that natural science videos are quite focused on astronomy and theoretical
+				<p>For example, we can see that NS videos are quite focused on astronomy and theoretical
 					physics (universe, galaxy, stars). We also see a part in biology with words like (medical, cell,
-					DNA). As a comparison, technical science is more focused on engineering and, well, technology in
+					DNA). As a comparison, TS is more focused on engineering and, well, technology in
 					general.</p>
 				<p>We also wanted to observe the repartition of our classified science videos in the two different
 					categories. We can see this in the following plot.</p>
 				<div class="image fit"><img src="images/science_domains_dist_pie_time.png" alt="" /></div>
 				<p>The pie chart shows us the distribution of the videos in general while the graph on the left shows us
 					the evolution of the percentages with regard to the years. We can observe that we see in general a
-					little more technical science videos on YouTube than natural science videos. While the proportion is
+					little more TS videos on YouTube than NS videos. While the proportion is
 					almost equal, we could explain the larger amount of tech videos on youtube because of all the tech
 					tutorials, technological product reviews and tests that is a quite popular trend on YouTube (<a
 						href=" https://shopping.google.com/m/21-of-21/articles/youtube-unboxing-videos/">source</a>).
@@ -332,8 +332,7 @@
 				<p>This process allows us to create a clean dataframe that can be used for the statistical analysis to
 					answer our research question. Indeed, it enables us to accurately analyze the behavior of users in
 					relation to different types of artistic and scientific content, as we are able to classify the
-					artistic and scientific videos into the subcategories of literary art, visual art, performing art,
-					natural science and technical science.</p>
+					artistic and scientific videos into the subcategories of LA, VA, PA, NS and TS.</p>
 
 				<h3>Users analysis</h3>
 				<h4>EDA</h4>
@@ -396,13 +395,13 @@
 				<p>Now that we have an idea of how our user sample looks like, we will try to answer our research
 					question:</p>
 				<p>"What is the difference in terms of artistic sensibility between people interested in
-					technical-related science vs people interested in natural sciences?"</p>
+					technical-related science vs people interested in NS?"</p>
 				<p>More precisely:</p>
 				<p>We will try to use linear regression in order to answer these two questions</p>
 				<ol>
-					<li>Who is more probable to comment on a visual / literary / performing art video: technical
+					<li>Who is more probable to comment on a VA / LA / PA video: technical
 						scientists or natural scientists?</li>
-					<li>Who is more probable to comment on a technical / natural science video: visual artists,
+					<li>Who is more probable to comment on a TS / NS video: visual artists,
 						performing artists or literary artists?</li>
 				</ol>
 				<p>Let's define these two sets so we can use them in our linear regression models.</p>
@@ -419,22 +418,22 @@
 				<p>Let's start with the first question with the following models for artists:</p>
 				<p>$$ A_j = \beta_0 + \sum_{i=1}^2 \beta_i S_i + \beta_3 Q, \quad j=1,\dots,3$$</p>
 				<div class="image fit"><img src="images/lin_reg_artists.png" alt="" /></div>
-				<p>We can see here that in general people interested in natural sciences are more likely to comment on
-					art videos than people interested in technical sciences, and this for our three art domains. We can
-					also see that people interested in technical science videos are quite unlikely to comment on
+				<p>We can see here that in general people interested in NS are more likely to comment on
+					art videos than people interested in TS, and this for our three art domains. We can
+					also see that people interested in TS videos are quite unlikely to comment on
 					visual_art videos.</p>
 				<p>We can also see that no_art_no_science is quite close to 0 in all cases, this helps us assess the
-					significance of the other coefficients for natural science and technical science.</p>
+					significance of the other coefficients for NS and TS.</p>
 				<p>Let's examine this phenomenon the other way around.</p>
 				<p><i><b>Are artists interested in science videos?</b></i></p>
 				<p>For the second question, we define the following models for scientists:</p>
 				<p>$$ S_j = \beta_0 + \sum_{i=1}^3 \beta_i A_i + \beta_4 Q, \quad j=1,\dots,2$$</p>
 				<div class="image fit"><img src="images/lin_reg_scientists.png" alt="" /></div>
 				<p>Here we can see in what domain of science are artists more interested in. We see that in general,
-					people interested in literary art are more likely to watch science videos than other types of arts.
-					Furthermore, as in the previous plot, we can see that people interested in literary art are also
-					much more interested in natural science rather than technical science.</p>
-				<p>We also see that people interested in visual arts are quite unlikely to comment on technical science
+					people interested in LA are more likely to watch science videos than other types of arts.
+					Furthermore, as in the previous plot, we can see that people interested in LA are also
+					much more interested in NS rather than TS.</p>
+				<p>We also see that people interested in VA are quite unlikely to comment on TS
 					videos.</p>
 
 				<h3>Statistical analysis</h3>
